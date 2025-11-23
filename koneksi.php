@@ -22,10 +22,10 @@ mysqli_set_charset($conn, "utf8mb4");
 
 // Check Maintenance Mode
 $config_file = __DIR__ . '/config/settings.json';
-if (file_exists($config_file)) {
-    $settings = json_decode(file_get_contents($config_file), true);
+if (@file_exists($config_file)) {
+    $settings = @json_decode(@file_get_contents($config_file), true);
     
-    if (isset($settings['maintenance_mode']) && $settings['maintenance_mode'] === true) {
+    if (is_array($settings) && isset($settings['maintenance_mode']) && $settings['maintenance_mode'] === true) {
         // Allow access to login.php, logout.php, and admin pages (if logged in as super_admin)
         $current_script = basename($_SERVER['PHP_SELF']);
         
