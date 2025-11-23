@@ -1,0 +1,647 @@
+/* ============================================
+   MBG System - Karyawan Management Styles
+   File: mbg/assets/css/karyawan.css
+   Baby Blue Theme - Konsisten dengan dashboard
+   ============================================ */
+
+/* Menggunakan variables dari admin-dashboard.css */
+
+/* ============================================
+   Karyawan Card
+   ============================================ */
+
+.karyawan-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 3px 25px rgba(137, 207, 240, 0.12);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+  border-left: 5px solid var(--baby-blue);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger animation */
+.karyawan-item:nth-child(1) .karyawan-card {
+  animation-delay: 0.1s;
+}
+.karyawan-item:nth-child(2) .karyawan-card {
+  animation-delay: 0.15s;
+}
+.karyawan-item:nth-child(3) .karyawan-card {
+  animation-delay: 0.2s;
+}
+.karyawan-item:nth-child(4) .karyawan-card {
+  animation-delay: 0.25s;
+}
+.karyawan-item:nth-child(5) .karyawan-card {
+  animation-delay: 0.3s;
+}
+.karyawan-item:nth-child(6) .karyawan-card {
+  animation-delay: 0.35s;
+}
+.karyawan-item:nth-child(7) .karyawan-card {
+  animation-delay: 0.4s;
+}
+.karyawan-item:nth-child(8) .karyawan-card {
+  animation-delay: 0.45s;
+}
+.karyawan-item:nth-child(9) .karyawan-card {
+  animation-delay: 0.5s;
+}
+
+.karyawan-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 35px rgba(137, 207, 240, 0.3);
+  border-left-width: 8px;
+}
+
+/* ============================================
+   Card Header dengan Avatar
+   ============================================ */
+
+.karyawan-card-header {
+  background: var(--gradient);
+  padding: 30px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 140px;
+}
+
+.karyawan-card-header::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 70%
+  );
+  animation: headerPulse 4s ease-in-out infinite;
+}
+
+@keyframes headerPulse {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+.karyawan-avatar {
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.karyawan-card:hover .karyawan-avatar {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.karyawan-status {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   Card Body
+   ============================================ */
+
+.karyawan-card-body {
+  padding: 30px 25px;
+  flex: 1;
+  background: white;
+}
+
+.karyawan-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+
+.karyawan-position {
+  color: var(--baby-blue-dark);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding: 6px 12px;
+  background: var(--baby-blue-lighter);
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.karyawan-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.info-item:hover {
+  background: var(--baby-blue-lighter);
+  transform: translateX(5px);
+  border-left-color: var(--baby-blue);
+  box-shadow: 0 2px 10px rgba(137, 207, 240, 0.15);
+}
+
+.info-item i {
+  color: var(--baby-blue);
+  font-size: 18px;
+  width: 22px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.info-item span {
+  color: #495057;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 500;
+  flex: 1;
+  word-break: break-word;
+}
+
+/* ============================================
+   Card Footer
+   ============================================ */
+
+.karyawan-card-footer {
+  padding: 20px 25px;
+  background: #f8f9fa;
+  display: flex;
+  gap: 12px;
+  border-top: 1px solid #e9ecef;
+}
+
+.btn-action {
+  flex: 1;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-action::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-action:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-edit {
+  background: var(--gradient);
+  color: white;
+  box-shadow: 0 3px 12px rgba(137, 207, 240, 0.3);
+}
+
+.btn-edit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(137, 207, 240, 0.4);
+  background: linear-gradient(135deg, #5fb3d4 0%, #89cff0 100%);
+}
+
+.btn-delete {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: white;
+  box-shadow: 0 3px 12px rgba(220, 53, 69, 0.3);
+}
+
+.btn-delete:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(220, 53, 69, 0.4);
+  background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+}
+
+.btn-action i {
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-action span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   Status Badges
+   ============================================ */
+
+.badge {
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.badge-aktif {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+}
+
+.badge-nonaktif {
+  background: #6c757d;
+  color: white;
+}
+
+.badge-cuti {
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+  color: white;
+}
+
+/* ============================================
+   Empty State
+   ============================================ */
+
+.empty-state {
+  text-align: center;
+  padding: 80px 30px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 3px 25px rgba(137, 207, 240, 0.12);
+  animation: fadeIn 0.5s ease-out;
+  margin: 40px 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.empty-state i {
+  font-size: 100px;
+  color: var(--baby-blue);
+  margin-bottom: 25px;
+  opacity: 0.4;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.empty-state h5 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.empty-state p {
+  color: var(--text-light);
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+/* ============================================
+   Modal Large Enhancement
+   ============================================ */
+
+.modal-lg {
+  max-width: 800px;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+/* Large Devices (1200px - 1399px) */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .karyawan-card-header {
+    padding: 25px 22px;
+  }
+
+  .karyawan-card-body {
+    padding: 25px 22px;
+  }
+
+  .karyawan-avatar {
+    width: 75px;
+    height: 75px;
+    min-width: 75px;
+    min-height: 75px;
+    max-width: 75px;
+    max-height: 75px;
+    font-size: 28px;
+  }
+}
+
+/* Medium Devices (992px - 1199px) */
+@media (max-width: 1199px) {
+  .karyawan-name {
+    font-size: 20px;
+  }
+
+  .karyawan-avatar {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    min-height: 70px;
+    max-width: 70px;
+    max-height: 70px;
+    font-size: 26px;
+  }
+}
+
+/* Tablet Portrait (768px - 991px) */
+@media (max-width: 991px) {
+  .karyawan-card-header {
+    padding: 22px 20px;
+    min-height: 120px;
+  }
+
+  .karyawan-card-body {
+    padding: 22px 20px;
+  }
+
+  .karyawan-avatar {
+    width: 65px;
+    height: 65px;
+    min-width: 65px;
+    min-height: 65px;
+    max-width: 65px;
+    max-height: 65px;
+    font-size: 24px;
+  }
+
+  .karyawan-name {
+    font-size: 19px;
+  }
+
+  .info-item {
+    padding: 10px 12px;
+  }
+}
+
+/* Mobile Landscape (576px - 767px) */
+@media (max-width: 767px) {
+  .karyawan-card-header {
+    padding: 20px 18px;
+    min-height: 110px;
+  }
+
+  .karyawan-card-body {
+    padding: 20px 18px;
+  }
+
+  .karyawan-card-footer {
+    padding: 18px;
+    flex-direction: column;
+  }
+
+  .btn-action {
+    width: 100%;
+  }
+
+  .karyawan-avatar {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    min-height: 60px;
+    max-width: 60px;
+    max-height: 60px;
+    font-size: 22px;
+  }
+
+  .karyawan-name {
+    font-size: 18px;
+  }
+
+  .karyawan-position {
+    font-size: 14px;
+  }
+
+  .info-item span {
+    font-size: 13px;
+  }
+
+  .modal-lg {
+    max-width: 100%;
+    margin: 10px;
+  }
+}
+
+/* Mobile Portrait (≤575px) */
+@media (max-width: 575px) {
+  .karyawan-card {
+    border-radius: 15px;
+  }
+
+  .karyawan-card-header {
+    padding: 18px 15px;
+    min-height: 100px;
+  }
+
+  .karyawan-card-body {
+    padding: 18px 15px;
+  }
+
+  .karyawan-card-footer {
+    padding: 15px;
+  }
+
+  .karyawan-avatar {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    min-height: 55px;
+    max-width: 55px;
+    max-height: 55px;
+    font-size: 20px;
+    border-width: 3px;
+  }
+
+  .karyawan-name {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+
+  .karyawan-position {
+    font-size: 13px;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+  }
+
+  .info-item {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .info-item i {
+    font-size: 16px;
+    width: 20px;
+  }
+
+  .info-item span {
+    font-size: 13px;
+  }
+
+  .btn-action {
+    padding: 11px 15px;
+    font-size: 13px;
+  }
+
+  .btn-action i {
+    font-size: 15px;
+  }
+
+  .badge {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .empty-state {
+    padding: 60px 20px;
+  }
+
+  .empty-state i {
+    font-size: 70px;
+  }
+
+  .empty-state h5 {
+    font-size: 22px;
+  }
+
+  .empty-state p {
+    font-size: 14px;
+  }
+}
+
+/* Extra Small Devices (≤400px) */
+@media (max-width: 400px) {
+  .karyawan-card-header {
+    padding: 15px 12px;
+  }
+
+  .karyawan-card-body {
+    padding: 15px 12px;
+  }
+
+  .karyawan-avatar {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+    font-size: 18px;
+  }
+
+  .karyawan-name {
+    font-size: 16px;
+  }
+
+  .info-item span {
+    font-size: 12px;
+  }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+
+@media print {
+  .karyawan-card-footer,
+  .action-bar,
+  .modal {
+    display: none !important;
+  }
+
+  .karyawan-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "app_name": "MBG System",
+    "app_description": "Sistem Manajemen Bakery & Gudang",
+    "app_email": "admin@mbgsystem.com",
+    "app_phone": "0812-3456-7890",
+    "app_address": "Jakarta, Indonesia",
+    "timezone": "Asia\/Jakarta",
+    "date_format": "d\/m\/Y",
+    "time_format": "H:i",
+    "currency": "IDR",
+    "language": "en",
+    "pagination": 10,
+    "session_timeout": 3600,
+    "maintenance_mode": false,
+    "email_notifications": true,
+    "backup_auto": true,
+    "backup_schedule": "daily",
+    "max_upload_size": 38,
+    "allowed_extensions": "jpg,jpeg,png,pdf,doc,docx,xls,xlsx"
+}
