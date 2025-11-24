@@ -291,14 +291,31 @@ $stats_total = $stats_aktif + $stats_nonaktif;
             transition: all 0.3s ease;
             margin: 2px;
             padding: 0;
+            cursor: pointer;
         }
         
         .action-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .action-btn i {
             font-size: 14px;
+        }
+        
+        .action-btn.edit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .action-btn.password {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .action-btn.delete {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
         }
         
         .search-box {
@@ -787,19 +804,19 @@ $stats_total = $stats_aktif + $stats_nonaktif;
                                 </td>
                                 <td>
                                     <div class="d-flex gap-1 justify-content-center">
-                                        <button type="button" class="btn-action edit" 
+                                        <button type="button" class="action-btn edit" 
                                                 onclick='editPengelola(<?= json_encode($row) ?>)'
                                                 data-bs-toggle="tooltip" title="Edit Data">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
                                         
-                                        <button type="button" class="btn-action password" 
+                                        <button type="button" class="action-btn password" 
                                                 onclick="resetPassword(<?= $row['id_pengelola'] ?>, '<?= $row['nama'] ?>')"
                                                 data-bs-toggle="tooltip" title="Reset Password">
                                             <i class="bi bi-key"></i>
                                         </button>
                                         
-                                        <button type="button" class="btn-action delete" 
+                                        <button type="button" class="action-btn delete" 
                                                 onclick="hapusPengelola(<?= $row['id_pengelola'] ?>, '<?= $row['nama'] ?>')"
                                                 data-bs-toggle="tooltip" title="Hapus Pengelola">
                                             <i class="bi bi-trash"></i>
