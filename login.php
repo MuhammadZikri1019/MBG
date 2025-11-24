@@ -276,13 +276,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
 
         <!-- Verification Form -->
         <div class="form-container verification-container" style="display: <?= isset($show_verification) ? 'block' : 'none' ?>;">
-            <form method="POST" action="" class="auth-form">
+            <form method="POST" action="" class="auth-form" id="otpForm">
                 <input type="hidden" name="action" value="verify">
                 <input type="hidden" name="email" value="<?= isset($verified_email) ? $verified_email : '' ?>">
+                <input type="hidden" name="code" id="hiddenOtpCode">
                 
-                <div class="form-header">
+                <div class="form-header text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-envelope-check" style="font-size: 48px; color: var(--primary);"></i>
+                    </div>
                     <h1>Verifikasi Akun</h1>
-                    <p class="text-muted">Masukkan kode 6 digit yang dikirim ke email Anda</p>
+                    <p class="text-muted">Masukkan kode 6 digit yang telah dikirim ke email Anda</p>
+                    <?php if (isset($verified_email)): ?>
+                        <p class="text-muted fw-bold"><?= $verified_email ?></p>
+                    <?php endif; ?>
                 </div>
 
                 <?php if (isset($error)): ?>
@@ -293,17 +300,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
                     </div>
                 <?php endif; ?>
 
-                <div class="input-group-custom mt-4">
-                    <i class="bi bi-key"></i>
-                    <input type="text" name="code" placeholder="Kode Verifikasi" required maxlength="6" pattern="[0-9]{6}">
+                <?php if (isset($success)): ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <?= $success ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                <?php endif; ?>
+
+                <!-- OTP Input Boxes -->
+                <div class="otp-input-container mb-4">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" data-index="0">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" data-index="1">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" data-index="2">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" data-index="3">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" data-index="4">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" data-index="5">
                 </div>
 
-                <button type="submit" class="btn-primary">
+                <button type="submit" class="btn-primary" id="verifyBtn">
                     <i class="bi bi-check-circle me-2"></i>Verifikasi
                 </button>
 
-                <div class="mobile-toggle">
-                    <p>Salah email? <a href="login.php">Kembali ke Login</a></p>
+                <div class="text-center mt-3">
+                    <p class="text-muted small">Tidak menerima kode?</p>
+                    <a href="login.php" class="text-decoration-none">
+                        <i class="bi bi-arrow-left me-1"></i>Kembali ke Login
+                    </a>
                 </div>
             </form>
         </div>

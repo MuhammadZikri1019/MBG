@@ -714,3 +714,87 @@ body {
     font-size: 10px;
   }
 }
+
+/* ============================================
+   OTP Input Styles
+   ============================================ */
+
+.otp-input-container {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 25px 0;
+  animation: fadeIn 1s ease-out 0.8s both;
+}
+
+.otp-input {
+  width: 50px;
+  height: 55px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  background: #f8f9fa;
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+  outline: none;
+  caret-color: var(--baby-blue);
+}
+
+.otp-input:focus {
+  border-color: var(--baby-blue);
+  background: var(--white);
+  box-shadow: 0 0 0 4px var(--shadow);
+  transform: scale(1.05);
+}
+
+.otp-input:not(:placeholder-shown) {
+  border-color: var(--baby-blue);
+  background: var(--baby-blue-light);
+  color: var(--text-dark);
+}
+
+/* Verification Container Specific */
+.verification-container {
+  width: 50% !important;
+  left: 50% !important;
+  transform: translateX(-50%);
+}
+
+.verification-container .auth-form {
+  justify-content: flex-start;
+  padding-top: 40px;
+}
+
+/* Mobile OTP Input */
+@media (max-width: 768px) {
+  .verification-container {
+    width: 100% !important;
+    left: 0 !important;
+    transform: none;
+  }
+
+  .otp-input-container {
+    gap: 8px;
+  }
+
+  .otp-input {
+    width: 45px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .otp-input-container {
+    gap: 6px;
+  }
+
+  .otp-input {
+    width: 40px;
+    height: 45px;
+    font-size: 18px;
+    border-radius: 8px;
+  }
+}

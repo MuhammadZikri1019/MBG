@@ -609,6 +609,105 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ============================================
+// OTP Input Handling
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+  const otpInputs = document.querySelectorAll('.otp-input');
+  const otpForm = document.getElementById('otpForm');
+  const hiddenOtpCode = document.getElementById('hiddenOtpCode');
+  
+  if (otpInputs.length > 0) {
+    // Focus first input on load
+    otpInputs[0].focus();
+    
+    otpInputs.forEach((input, index) => {
+      // Input event - move to next field
+      input.addEventListener('input', function(e) {
+        const value = this.value;
+        
+        // Only allow digits
+        this.value = value.replace(/[^0-9]/g, '');
+        
+        if (this.value.length === 1 && index < otpInputs.length - 1) {
+          // Move to next input
+          otpInputs[index + 1].focus();
+        }
+        
+        // Update hidden field
+        updateHiddenOTP();
+        
+        // Auto-submit if all filled
+        if (index === otpInputs.length - 1 && this.value) {
+          checkAndSubmit();
+        }
+      });
+      
+      // Keydown event - handle backspace
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Backspace' && !this.value && index > 0) {
+          // Move to previous input and clear it
+          otpInputs[index - 1].focus();
+          otpInputs[index - 1].value = '';
+          updateHiddenOTP();
+        }
+      });
+      
+      // Paste event - distribute digits across inputs
+      input.addEventListener('paste', function(e) {
+        e.preventDefault();
+        const pasteData = e.clipboardData.getData('text');
+        const digits = pasteData.replace(/[^0-9]/g, '').split('');
+        
+        digits.forEach((digit, i) => {
+          if (index + i < otpInputs.length) {
+            otpInputs[index + i].value = digit;
+          }
+        });
+        
+        // Focus last filled input or next empty
+        const lastFilledIndex = Math.min(index + digits.length, otpInputs.length - 1);
+        otpInputs[lastFilledIndex].focus();
+        
+        updateHiddenOTP();
+        checkAndSubmit();
+      });
+      
+      // Focus event - select content
+      input.addEventListener('focus', function() {
+        this.select();
+      });
+    });
+    
+    // Update hidden OTP code field
+    function updateHiddenOTP() {
+      if (hiddenOtpCode) {
+        const otp = Array.from(otpInputs).map(input => input.value).join('');
+        hiddenOtpCode.value = otp;
+      }
+    }
+    
+    // Check if all inputs filled and submit
+    function checkAndSubmit() {
+      const allFilled = Array.from(otpInputs).every(input => input.value.length === 1);
+      
+      if (allFilled && otpForm) {
+        updateHiddenOTP();
+        // Add visual feedback before submit
+        otpInputs.forEach(input => {
+          input.style.borderColor = '#28a745';
+          input.style.background = '#d4edda';
+        });
+        
+        // Submit after brief delay
+        setTimeout(() => {
+          otpForm.submit();
+        }, 500);
+      }
+    }
+  }
+});
+
+// ============================================
 // Console Logs
 // ============================================
 console.log("🎨 MBG System Loaded!");
