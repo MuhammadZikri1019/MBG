@@ -629,20 +629,17 @@ $result_dapur = mysqli_query($conn, $query_dapur);
         });
 
         // ============================================
-        // Form Validation
-            if (confirm('Apakah Anda yakin ingin menghapus karyawan "' + nama + '"?')) {
-                window.location.href = 'karyawan.php?delete=' + id;
-            }
-        }
-
-        // Auto dismiss alerts after 5 seconds
-        setTimeout(function() {
-            var alerts = document.querySelectorAll('.alert');
-            alerts.forEach(function(alert) {
-                var bsAlert = new bootstrap.Alert(alert);
-                bsAlert.close();
+        // Form Validation and Reset
+        // ============================================
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('hidden.bs.modal', function() {
+                const forms = this.querySelectorAll('form');
+                forms.forEach(form => {
+                    form.reset();
+                    form.classList.remove('was-validated');
+                });
             });
-        }, 5000);
+        });
 
         console.log('👥 Kelola Karyawan - Loaded Successfully!');
     </script>

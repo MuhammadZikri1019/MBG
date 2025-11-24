@@ -249,7 +249,7 @@ $result_pengelola = mysqli_query($conn, $query_pengelola);
                                         <i class="bi bi-pencil-square"></i>
                                     </button>
                                     <button type="button" class="btn-action delete" 
-                                            onclick="hapusDapur(<?= $dapur['id_dapur'] ?>, '<?= $dapur['nama_dapur'] ?>')"
+                                            onclick="deleteDapur(<?= $dapur['id_dapur'] ?>, '<?= $dapur['nama_dapur'] ?>')"
                                             data-bs-toggle="tooltip" title="Hapus">
                                         <i class="bi bi-trash"></i>
                                     </button>

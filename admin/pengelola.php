@@ -291,14 +291,31 @@ $stats_total = $stats_aktif + $stats_nonaktif;
             transition: all 0.3s ease;
             margin: 2px;
             padding: 0;
+            cursor: pointer;
         }
         
         .action-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .action-btn i {
             font-size: 14px;
+        }
+        
+        .action-btn.edit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .action-btn.password {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .action-btn.delete {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
         }
         
         .search-box {
@@ -1034,6 +1051,9 @@ $stats_total = $stats_aktif + $stats_nonaktif;
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden && window.innerWidth >= 1200) {
                 forceEnableScroll();
+            }
+        });
+        
         // Edit Pengelola Function
         function editPengelola(data) {
             document.getElementById('edit_id').value = data.id_pengelola;
