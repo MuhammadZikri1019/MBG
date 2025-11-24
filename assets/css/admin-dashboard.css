@@ -188,7 +188,6 @@ html {
   font-size: 52px;
   color: white;
   margin-bottom: 12px;
-  
 }
 
 .sidebar-header h4 {
@@ -288,7 +287,7 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
- 
+
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -372,7 +371,7 @@ html {
   font-weight: bold;
   font-size: 20px;
   box-shadow: 0 4px 15px var(--shadow);
-  
+
   flex-shrink: 0;
   overflow: hidden;
   aspect-ratio: 1 / 1;
@@ -749,11 +748,11 @@ html {
   .user-profile {
     gap: 10px;
   }
-  
+
   .user-profile .fw-bold {
     font-size: 14px;
   }
-  
+
   .user-profile small {
     font-size: 12px;
   }
@@ -801,14 +800,14 @@ html {
     font-size: 18px;
     margin-bottom: 20px;
   }
-  
+
   .sidebar {
     left: 0;
     transform: translateX(0);
     width: 260px;
-    box-shadow: 4px 0 20px rgba(0,0,0,0.2);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
   }
-  
+
   .sidebar.collapsed {
     transform: translateX(-100%);
     box-shadow: none;
@@ -829,20 +828,20 @@ html {
     font-size: 22px;
     border-radius: 12px;
   }
-  
+
   .top-navbar {
     margin-top: 70px;
     padding: 20px 18px;
     border-radius: 18px;
     margin-bottom: 25px;
   }
-  
+
   /* Fix Grid Gaps on Mobile */
   .row.g-4 {
     --bs-gutter-y: 1.25rem;
     --bs-gutter-x: 1rem;
   }
-  
+
   .row.g-3 {
     --bs-gutter-y: 1rem;
     --bs-gutter-x: 0.75rem;
@@ -888,7 +887,7 @@ html {
   .user-profile > div {
     text-align: center;
   }
-  
+
   .user-avatar {
     width: 50px !important;
     height: 50px !important;
@@ -943,12 +942,12 @@ html {
     margin-bottom: 25px;
     font-weight: 700;
   }
-  
+
   .chart-card h5 i,
   .table-card h5 i {
     font-size: 20px;
   }
-  
+
   .chart-card canvas {
     max-height: 300px;
   }
@@ -968,7 +967,7 @@ html {
     font-size: 13px;
     margin-bottom: 5px;
   }
-  
+
   .list-group-item small i {
     font-size: 12px;
     margin-right: 6px;
@@ -1054,13 +1053,13 @@ html {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  
+
   /* Better card spacing */
   .card {
     margin-bottom: 20px;
     border-radius: 16px;
     border: none;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   }
 
   .user-profile {
@@ -1177,13 +1176,13 @@ html {
     font-size: 12px;
     font-weight: 600;
   }
-  
+
   /* Better row gutters */
   .row.g-3 {
     --bs-gutter-y: 1.25rem;
     --bs-gutter-x: 1rem;
   }
-  
+
   .row.g-4 {
     --bs-gutter-y: 1.5rem;
     --bs-gutter-x: 1rem;
@@ -1211,7 +1210,7 @@ html {
   .top-navbar h4 {
     font-size: 20px;
   }
-  
+
   .top-navbar {
     margin-top: 65px;
     padding: 18px 15px;
@@ -1225,7 +1224,7 @@ html {
   .stat-card h3 {
     font-size: 36px;
   }
-  
+
   .stat-card p {
     font-size: 14px;
   }
@@ -1240,17 +1239,17 @@ html {
     --bs-gutter-x: 0.75rem;
     --bs-gutter-y: 1rem;
   }
-  
+
   .row.g-3 {
     --bs-gutter-x: 0.5rem;
     --bs-gutter-y: 0.75rem;
   }
-  
+
   .chart-card,
   .table-card {
     padding: 22px 18px;
   }
-  
+
   .chart-card h5,
   .table-card h5 {
     font-size: 17px;
@@ -1337,71 +1336,71 @@ html {
    Action Buttons Styling
    ============================================ */
 .action-buttons {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
 }
 
 .btn-action {
-    width: 38px;
-    height: 38px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-action:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .btn-action:active {
-    transform: translateY(-1px);
+  transform: translateY(-1px);
 }
 
 .btn-action i {
-    font-size: 1.1rem;
-    z-index: 2;
+  font-size: 1.1rem;
+  z-index: 2;
 }
 
 /* Detail Button (Info) */
 .btn-action.btn-info {
-    background-color: rgba(14, 165, 233, 0.1);
-    color: #0ea5e9 !important;
+  background-color: rgba(14, 165, 233, 0.1);
+  color: #0ea5e9 !important;
 }
 .btn-action.btn-info:hover {
-    background-color: #0ea5e9;
-    color: white !important;
-    box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
+  background-color: #0ea5e9;
+  color: white !important;
+  box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
 }
 
 /* Edit Button (Warning) */
 .btn-action.btn-edit {
-    background-color: rgba(245, 158, 11, 0.1);
-    color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
 }
 .btn-action.btn-edit:hover {
-    background-color: #f59e0b;
-    color: white;
-    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+  background-color: #f59e0b;
+  color: white;
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
 }
 
 /* Delete Button (Danger) */
 .btn-action.btn-delete {
-    background-color: rgba(239, 68, 68, 0.1);
-    color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
 }
 .btn-action.btn-delete:hover {
-    background-color: #ef4444;
-    color: white;
-    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+  background-color: #ef4444;
+  color: white;
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
 }
 /* ============================================
    Action Buttons
@@ -1417,12 +1416,12 @@ html {
   transition: all 0.3s ease;
   margin: 0 3px;
   color: white;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .btn-action:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   color: white;
 }
 

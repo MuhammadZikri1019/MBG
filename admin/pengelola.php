@@ -962,99 +962,9 @@ $stats_total = $stats_aktif + $stats_nonaktif;
     <script src="../assets/js/auth.js"></script>
     
     <script>
-        // CRITICAL: Force enable scroll on load
-        function forceEnableScroll() {
-            document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.width = '';
-            document.body.classList.remove('mobile-sidebar-active');
-            document.documentElement.style.overflow = '';
-        }
-
-        // Toggle Sidebar dengan ROBUST scroll fix
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            const isMobile = window.innerWidth < 1200;
-            
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-            
-            if (isMobile) {
-                // Mobile: Toggle scroll lock
-                if (sidebar.classList.contains('active')) {
-                    document.body.classList.add('mobile-sidebar-active');
-                } else {
-                    forceEnableScroll();
-                }
-            } else {
-                // Desktop: ALWAYS enable scroll
-                forceEnableScroll();
-            }
-        }
-
-        // Close sidebar and FORCE enable scroll
-        function closeSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-            
-            // FORCE enable scroll
-            forceEnableScroll();
-        }
-
-        // ESC key handler
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const sidebar = document.getElementById('sidebar');
-                if (sidebar.classList.contains('active')) {
-                    closeSidebar();
-                }
-            }
-        });
-
-        // Overlay click handler
-        document.getElementById('sidebarOverlay')?.addEventListener('click', function() {
-            closeSidebar();
-        });
-
-        // Menu link click handler
-        document.querySelectorAll('.sidebar-menu a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (window.innerWidth < 1200) {
-                    setTimeout(closeSidebar, 150);
-                }
-            });
-        });
-
-        // Window resize handler
-        let resizeTimer;
-        window.addEventListener('resize', function() {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function() {
-                if (window.innerWidth >= 1200) {
-                    // Desktop: Close sidebar dan force enable scroll
-                    closeSidebar();
-                }
-            }, 250);
-        });
-
-        // Page load handler - CRITICAL
-        window.addEventListener('load', forceEnableScroll);
-        
-        // DOMContentLoaded handler - BACKUP
-        document.addEventListener('DOMContentLoaded', forceEnableScroll);
-
-        // Visibility change handler - when tab becomes visible
-        document.addEventListener('visibilitychange', function() {
-            if (!document.hidden && window.innerWidth >= 1200) {
-                forceEnableScroll();
-            }
-        });
-        
+        // ============================================
         // Edit Pengelola Function
+        // ============================================
         function editPengelola(data) {
             document.getElementById('edit_id').value = data.id_pengelola;
             document.getElementById('edit_nama').value = data.nama;
@@ -1062,33 +972,57 @@ $stats_total = $stats_aktif + $stats_nonaktif;
             document.getElementById('edit_telepon').value = data.no_telepon;
             document.getElementById('edit_status').value = data.status;
             
-            new bootstrap.Modal(document.getElementById('modalEdit')).show();
+            const modal = new bootstrap.Modal(document.getElementById('modalEdit'));
+            modal.show();
         }
-        
+
+        // ============================================
         // Reset Password Function
+        // ============================================
         function resetPassword(id, nama) {
             document.getElementById('reset_id').value = id;
             document.getElementById('reset_nama').textContent = nama;
             
-            new bootstrap.Modal(document.getElementById('modalResetPassword')).show();
+            const modal = new bootstrap.Modal(document.getElementById('modalResetPassword'));
+            modal.show();
         }
-        
+
+        // ============================================
         // Hapus Pengelola Function
+        // ============================================
         function hapusPengelola(id, nama) {
-            if (confirm('Apakah Anda yakin ingin menghapus pengelola "' + nama + '"?\n\nPerhatian: Pengelola tidak dapat dihapus jika masih memiliki dapur terdaftar.')) {
-                window.location.href = 'pengelola.php?hapus=' + id;
+            if (confirm(`Apakah Anda yakin ingin menghapus pengelola "${nama}"?\n\nPerhatian: Pengelola tidak dapat dihapus jika masih memiliki dapur terdaftar.`)) {
+                window.location.href = `pengelola.php?hapus=${id}`;
             }
         }
-        
-        // Auto dismiss alerts after 5 seconds
-        setTimeout(function() {
-            var alerts = document.querySelectorAll('.alert');
-            alerts.forEach(function(alert) {
-                var bsAlert = new bootstrap.Alert(alert);
-                bsAlert.close();
+
+        // ============================================
+        // Auto Dismiss Alerts
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                setTimeout(() => {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                }, 5000);
             });
-        }, 5000);
+        });
+
+        // ============================================
+        // Form Validation and Reset
+        // ============================================
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('hidden.bs.modal', function() {
+                const forms = this.querySelectorAll('form');
+                forms.forEach(form => {
+                    form.reset();
+                    form.classList.remove('was-validated');
+                });
+            });
+        });
+        
+        console.log('✅ Kelola Pengelola - Loaded Successfully!');
     </script>
 </body>
 </html>
-```

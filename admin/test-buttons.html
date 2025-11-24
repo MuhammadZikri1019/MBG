@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Action Buttons</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/css/admin-dashboard.css">
+</head>
+<body class="p-5">
+    <div class="container">
+        <h2>Test Tombol Aksi Pengelola</h2>
+        <p>Klik tombol di bawah ini untuk test:</p>
+        
+        <div class="d-flex gap-2 my-4">
+            <button type="button" class="action-btn edit" 
+                    onclick="testEdit()">
+                <i class="bi bi-pencil-square"></i>
+            </button>
+            
+            <button type="button" class="action-btn password" 
+                    onclick="testPassword()">
+                <i class="bi bi-key"></i>
+            </button>
+            
+            <button type="button" class="action-btn delete" 
+                    onclick="testDelete()">
+                <i class="bi bi-trash"></i>
+            </button>
+        </div>
+        
+        <div id="result" class="alert alert-info">Klik salah satu tombol</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function testEdit() {
+            document.getElementById('result').innerHTML = '✅ Tombol EDIT berfungsi!';
+            document.getElementById('result').className = 'alert alert-success';
+        }
+        
+        function testPassword() {
+            document.getElementById('result').innerHTML = '✅ Tombol PASSWORD berfungsi!';
+            document.getElementById('result').className = 'alert alert-warning';
+        }
+        
+        function testDelete() {
+            document.getElementById('result').innerHTML = '✅ Tombol DELETE berfungsi!';
+            document.getElementById('result').className = 'alert alert-danger';
+        }
+        
+        console.log('Test page loaded successfully');
+    </script>
+</body>
+</html>

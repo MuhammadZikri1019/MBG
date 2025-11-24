@@ -3,10 +3,27 @@
 require_once '../koneksi.php';
 checkRole(['super_admin']);
 
-// Ambil data dashboard dari view
-$query_dashboard = "SELECT * FROM vw_dashboard_super_admin";
-$result_dashboard = mysqli_query($conn, $query_dashboard);
-$dashboard = mysqli_fetch_assoc($result_dashboard);
+// Cek apakah view ada (untuk kompatibilitas localhost & Wasmer)
+$check_view = mysqli_query($conn, "SHOW TABLES LIKE 'vw_dashboard_super_admin'");
+$view_exists = mysqli_num_rows($check_view) > 0;
+
+if ($view_exists) {
+    // Gunakan view jika ada (Wasmer)
+    $query_dashboard = "SELECT * FROM vw_dashboard_super_admin";
+    $result_dashboard = mysqli_query($conn, $query_dashboard);
+    $dashboard = mysqli_fetch_assoc($result_dashboard);
+} else {
+    // Gunakan query manual jika view tidak ada (localhost)
+    $dashboard = array(
+        'total_pengelola' => mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM tbl_pengelola_dapur WHERE status = 'aktif'"))['total'],
+        'total_dapur' => mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM tbl_dapur WHERE status = 'aktif'"))['total'],
+        'total_karyawan' => mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM tbl_karyawan WHERE status = 'aktif'"))['total'],
+        'total_menu' => mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM tbl_menu WHERE status = 'aktif'"))['total'] ?? 0,
+        'produksi_hari_ini' => mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM tbl_produksi_harian WHERE tanggal_produksi = CURDATE()"))['total'] ?? 0,
+        'total_bahan_aktif' => mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM tbl_bahan_baku WHERE status = 'tersedia'"))['total'] ?? 0,
+        'pembelanjaan_hari_ini' => mysqli_fetch_assoc(mysqli_query($conn, "SELECT COALESCE(SUM(total_pembelian), 0) as total FROM tbl_pembelanjaan WHERE tanggal_pembelian = CURDATE()"))['total'] ?? 0
+    );
+}
 
 // Data untuk chart produksi 7 hari terakhir
 $query_chart = "SELECT 

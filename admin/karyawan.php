@@ -530,35 +530,6 @@ $result_dapur = mysqli_query($conn, $query_dapur);
     <script src="../assets/js/admin-global.js"></script>
     <script>
         // ============================================
-        // Toggle Sidebar Function
-        // ============================================
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            const mainContent = document.querySelector('.main-content');
-            
-            sidebar.classList.toggle('collapsed');
-            overlay.classList.toggle('active');
-            mainContent.classList.toggle('expanded');
-            
-            localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
-        }
-
-        // ============================================
-        // Load Sidebar State
-        // ============================================
-        window.addEventListener('DOMContentLoaded', function() {
-            const sidebarCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.querySelector('.main-content');
-            
-            if (sidebarCollapsed) {
-                sidebar.classList.add('collapsed');
-                mainContent.classList.add('expanded');
-            }
-        });
-
-        // ============================================
         // Search Functionality for Table
         // ============================================
         document.getElementById('searchInput').addEventListener('keyup', function() {
