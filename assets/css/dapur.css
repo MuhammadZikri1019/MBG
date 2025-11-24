@@ -599,75 +599,79 @@ textarea.form-control {
   .action-bar .btn-primary {
     width: 100%;
     justify-content: center;
+    padding: 14px 28px;
+    font-size: 16px;
   }
 
   .table-dapur thead th {
-    padding: 15px 12px;
-    font-size: 13px;
+    padding: 16px 14px;
+    font-size: 14px;
   }
 
   .table-dapur tbody td {
-    padding: 15px 12px;
-    font-size: 13px;
+    padding: 16px 14px;
+    font-size: 14px;
   }
 
   .btn-action {
-    padding: 6px 12px;
-    font-size: 12px;
+    padding: 8px 14px;
+    font-size: 13px;
   }
 
   .btn-action i {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .dapur-card-header {
-    padding: 20px;
+    padding: 25px 20px;
   }
 
   .dapur-icon {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
   }
 
   .dapur-icon i {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .dapur-card-body {
-    padding: 20px;
+    padding: 25px 20px;
   }
 
   .dapur-title {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .info-item {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .dapur-card-footer {
-    padding: 15px 20px;
+    padding: 20px;
     flex-direction: column;
+    gap: 12px;
   }
 
   .btn-action {
     width: 100%;
+    padding: 12px 18px;
   }
 
   .modal-header {
-    padding: 20px;
+    padding: 22px 20px;
   }
 
   .modal-header .modal-title {
-    font-size: 18px;
+    font-size: 19px;
   }
 
   .modal-body {
-    padding: 20px;
+    padding: 25px 20px;
   }
 
   .modal-footer {
-    padding: 15px 20px;
+    padding: 20px;
     flex-direction: column;
   }
 
@@ -676,11 +680,26 @@ textarea.form-control {
   }
 
   .empty-state {
-    padding: 60px 20px;
+    padding: 70px 25px;
   }
 
   .empty-state i {
-    font-size: 60px;
+    font-size: 70px;
+  }
+  
+  .empty-state h5 {
+    font-size: 20px;
+  }
+  
+  .empty-state p {
+    font-size: 15px;
+  }
+  
+  .badge-aktif,
+  .badge-nonaktif,
+  .badge-maintenance {
+    padding: 7px 14px;
+    font-size: 12px;
   }
 }
 
@@ -690,40 +709,54 @@ textarea.form-control {
   }
 
   .table-dapur thead th {
-    padding: 12px 10px;
-    font-size: 12px;
+    padding: 14px 12px;
+    font-size: 13px;
   }
 
   .table-dapur tbody td {
-    padding: 12px 10px;
-    font-size: 12px;
+    padding: 14px 12px;
+    font-size: 13px;
   }
 
   .dapur-card-header {
-    padding: 18px;
+    padding: 22px 18px;
   }
 
   .dapur-card-body {
-    padding: 18px;
+    padding: 22px 18px;
   }
 
   .dapur-title {
-    font-size: 17px;
-    margin-bottom: 15px;
+    font-size: 19px;
+    margin-bottom: 18px;
   }
 
   .badge-aktif,
   .badge-nonaktif,
   .badge-maintenance {
-    padding: 5px 12px;
-    font-size: 11px;
+    padding: 6px 14px;
+    font-size: 12px;
   }
 
   .modal-header .modal-title {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   .modal-header .modal-title i {
-    font-size: 20px;
+    font-size: 22px;
+  }
+  
+  .action-bar {
+    margin-bottom: 25px;
+  }
+  
+  .search-box input {
+    font-size: 16px; /* Prevent iOS zoom */
+    padding: 14px 20px 14px 50px;
+  }
+  
+  .form-control,
+  .form-select {
+    font-size: 16px; /* Prevent iOS zoom */
   }
 }
