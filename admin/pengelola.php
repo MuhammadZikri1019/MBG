@@ -804,19 +804,19 @@ $stats_total = $stats_aktif + $stats_nonaktif;
                                 </td>
                                 <td>
                                     <div class="d-flex gap-1 justify-content-center">
-                                        <button type="button" class="btn-action edit" 
+                                        <button type="button" class="action-btn edit" 
                                                 onclick='editPengelola(<?= json_encode($row) ?>)'
                                                 data-bs-toggle="tooltip" title="Edit Data">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
                                         
-                                        <button type="button" class="btn-action password" 
+                                        <button type="button" class="action-btn password" 
                                                 onclick="resetPassword(<?= $row['id_pengelola'] ?>, '<?= $row['nama'] ?>')"
                                                 data-bs-toggle="tooltip" title="Reset Password">
                                             <i class="bi bi-key"></i>
                                         </button>
                                         
-                                        <button type="button" class="btn-action delete" 
+                                        <button type="button" class="action-btn delete" 
                                                 onclick="hapusPengelola(<?= $row['id_pengelola'] ?>, '<?= $row['nama'] ?>')"
                                                 data-bs-toggle="tooltip" title="Hapus Pengelola">
                                             <i class="bi bi-trash"></i>
