@@ -1034,6 +1034,9 @@ $stats_total = $stats_aktif + $stats_nonaktif;
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden && window.innerWidth >= 1200) {
                 forceEnableScroll();
+            }
+        });
+        
         // Edit Pengelola Function
         function editPengelola(data) {
             document.getElementById('edit_id').value = data.id_pengelola;
