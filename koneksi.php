@@ -5,9 +5,9 @@ session_start();
 // Konfigurasi Database - Wasmer
 define('DB_HOST', 'db.fr-pari1.bengt.wasmernet.com');
 define('DB_PORT', '10272');
-define('DB_USER', '32c7cae474c38000e6591c4c7721');
-define('DB_PASS', '069232c7-cae4-7f0f-8000-77eb584fa46e');
-define('DB_NAME', 'dbAaHiLmjZwwrtJ9K7v63P9Z');
+define('DB_USER', '3da41cfd763580009b220c65f8d7');
+define('DB_PASS', '06923da4-1cfe-711b-8000-58e53d9c235e');
+define('DB_NAME', 'dbZ9s7AJt4CAfv6FE5o67Q67');
 
 // Membuat koneksi dengan port
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
