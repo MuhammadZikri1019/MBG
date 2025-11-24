@@ -33,31 +33,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
                       VALUES ('$id_dapur', '$id_pengelola', '$nama', '$email', '$password', '$no_telepon', '$alamat', '$bagian', '$status', '$jam_masuk', '$jam_keluar', '$hari_libur')";
             
             if (mysqli_query($conn, $query)) {
-                $success = "Karyawan berhasil ditambahkan!";
+                // Kirim Email menggunakan EmailService
+                require_once __DIR__ . '/../includes/EmailService.php';
                 
-                // Kirim Email Notifikasi
-                $to = $email;
-                $subject = "Akun Karyawan Baru - MBG System";
-                $message = "
-                Halo $nama,
+                $emailResult = EmailService::sendPasswordEmail($email, $nama, $email, $password);
                 
-                Akun Anda telah dibuat di MBG System. Berikut adalah detail login Anda:
-                
-                Email: $email
-                Password: $password
-                
-                Silakan login dan segera ganti password Anda.
-                
-                Salam,
-                Tim MBG System
-                ";
-                $headers = "From: no-reply@mbgsystem.com";
-                
-                // Coba kirim email (gunakan @ untuk menyembunyikan warning jika SMTP belum disetting)
-                if (@mail($to, $subject, $message, $headers)) {
-                    $success .= " Email notifikasi berhasil dikirim.";
+                if ($emailResult['success']) {
+                    $success = "Karyawan berhasil ditambahkan! Email kredensial telah dikirim.";
                 } else {
-                    $success .= " (Catatan: Email notifikasi gagal dikirim karena server lokal belum dikonfigurasi SMTP, tapi data karyawan sudah tersimpan).";
+                    $success = "Karyawan berhasil ditambahkan! <small class='text-muted'>({$emailResult['message']})</small>";
                 }
                 
             } else {

@@ -124,21 +124,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
                                 VALUES ('$nama', '$email', '$password', 'aktif', '$verification_code', '$expires_at', 0, NOW())";
                 
                 if (mysqli_query($conn, $insert_query)) {
-                    // Kirim Email
-                    $to = $email;
-                    $subject = "Verifikasi Akun MBG System";
-                    $message = "Halo $nama,\n\n";
-                    $message .= "Terima kasih telah mendaftar. Kode verifikasi Anda adalah:\n\n";
-                    $message .= "$verification_code\n\n";
-                    $message .= "Kode ini berlaku selama 1 hari.\n\n";
-                    $message .= "Salam,\nMBG System";
-                    $headers = "From: no-reply@mbgsystem.com";
+                    // Kirim Email menggunakan EmailService
+                    require_once __DIR__ . '/includes/EmailService.php';
                     
-                    // Note: mail() requires SMTP configuration in php.ini
-                    @mail($to, $subject, $message, $headers);
+                    $emailResult = EmailService::sendOTPEmail($email, $nama, $verification_code);
                     
-                    // FOR LOCALHOST TESTING ONLY: Show code in message
-                    $success = "Registrasi berhasil! Kode verifikasi telah dikirim ke email Anda.<br><strong>(Mode Testing: Kode Anda adalah $verification_code)</strong>";
+                    if ($emailResult['success']) {
+                        $success = "Registrasi berhasil! Kode verifikasi telah dikirim ke email Anda. Silakan cek inbox atau folder spam.";
+                    } else {
+                        // Email gagal, tapi tetap tampilkan kode untuk testing
+                        $success = "Registrasi berhasil! Email gagal dikirim. <strong>Kode verifikasi Anda: $verification_code</strong><br><small class='text-muted'>({$emailResult['message']})</small>";
+                    }
+                    
                     $show_verification = true;
                     $verified_email = $email;
                 } else {
