@@ -20,6 +20,11 @@ if (!$conn) {
 // Set charset UTF-8
 mysqli_set_charset($conn, "utf8mb4");
 
+// Set timezone to Asia/Jakarta (WIB - UTC+7)
+date_default_timezone_set('Asia/Jakarta');
+// Try to set MySQL timezone, suppress error if not supported
+@mysqli_query($conn, "SET time_zone = '+07:00'");
+
 // Check Maintenance Mode
 $config_file = __DIR__ . '/config/settings.json';
 if (@file_exists($config_file)) {
