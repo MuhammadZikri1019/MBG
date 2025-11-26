@@ -194,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
                     <div class="overlay-content">
-                        <i class="bi bi-building overlay-icon"></i>
+                        <img src="assets/img/logo.png" alt="MBG Logo" class="logo">
                         <h1 class="overlay-title">Welcome Back!</h1>
                         <p class="overlay-text">Sudah punya akun? Login untuk mengakses dashboard</p>
                         <button class="btn-ghost" id="signIn">
