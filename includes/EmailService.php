@@ -31,12 +31,22 @@ class EmailService {
     public static function sendOTPEmail($to, $name, $otp_code) {
         self::init();
         
-        // Cek jika PHPMailer tersedia
-        if (file_exists(__DIR__ . '/PHPMailer/PHPMailer.php')) {
-            return self::sendWithPHPMailer($to, $name, $otp_code, 'otp');
-        } else {
-            // Fallback ke mail() function dengan logging
-            return self::sendWithMailFunction($to, $name, $otp_code, 'otp');
+        try {
+            // Cek jika PHPMailer tersedia
+            if (file_exists(__DIR__ . '/PHPMailer/PHPMailer.php')) {
+                return self::sendWithPHPMailer($to, $name, $otp_code, 'otp');
+            } else {
+                // Fallback ke mail() function dengan logging
+                return self::sendWithMailFunction($to, $name, $otp_code, 'otp');
+            }
+        } catch (Exception $e) {
+            error_log("EmailService Error: " . $e->getMessage());
+            // Return false but include OTP for fallback display
+            return [
+                'success' => false, 
+                'message' => 'Gagal mengirim email: ' . $e->getMessage(),
+                'debug_otp' => $otp_code
+            ];
         }
     }
     
@@ -108,6 +118,15 @@ class EmailService {
      */
     private static function sendWithMailFunction($to, $name, $data, $type) {
         try {
+            // Cek apakah fungsi mail() tersedia/diaktifkan
+            if (!function_exists('mail')) {
+                return [
+                    'success' => false, 
+                    'message' => 'Fungsi mail() tidak tersedia di server ini.',
+                    'debug_otp' => ($type === 'otp') ? $data : null
+                ];
+            }
+
             $headers = "From: " . self::$config['from_name'] . " <" . self::$config['from_email'] . ">\r\n";
             $headers .= "Reply-To: " . self::$config['from_email'] . "\r\n";
             $headers .= "Content-Type: text/plain; charset=" . self::$config['charset'] . "\r\n";
@@ -132,13 +151,18 @@ class EmailService {
                 
                 return [
                     'success' => false, 
-                    'message' => 'Email gagal dikirim. Silakan hubungi administrator untuk setup SMTP.'
+                    'message' => 'Email gagal dikirim. Silakan hubungi administrator untuk setup SMTP.',
+                    'debug_otp' => ($type === 'otp') ? $data : null
                 ];
             }
             
         } catch (Exception $e) {
             error_log("Email Error: " . $e->getMessage());
-            return ['success' => false, 'message' => 'Terjadi kesalahan saat mengirim email'];
+            return [
+                'success' => false, 
+                'message' => 'Terjadi kesalahan saat mengirim email',
+                'debug_otp' => ($type === 'otp') ? $data : null
+            ];
         }
     }
     
